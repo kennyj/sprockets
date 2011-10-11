@@ -10,6 +10,7 @@ module Sprockets
   # Assets
   autoload :Asset,                   "sprockets/asset"
   autoload :BundledAsset,            "sprockets/bundled_asset"
+  autoload :Dependency,              "sprockets/dependency"
   autoload :ProcessedAsset,          "sprockets/processed_asset"
   autoload :StaticAsset,             "sprockets/static_asset"
 

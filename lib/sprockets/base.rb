@@ -144,6 +144,16 @@ module Sprockets
       attributes_for(path).content_type
     end
 
+    def find_dependency(path)
+      pathname = Pathname.new(path)
+
+      return unless pathname.to_s =~ /^\//
+      return unless stat(pathname)
+
+      logical_path = attributes_for(pathname).logical_path
+      Dependency.new(self, pathname, logical_path)
+    end
+
     # Find asset by logical path or expanded path.
     def find_asset(path, options = {})
       logical_path = path

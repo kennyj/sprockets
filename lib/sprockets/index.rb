@@ -58,6 +58,20 @@ module Sprockets
       end
     end
 
+    def find_dependency(path)
+      key = "#{path}:dependency"
+      if @assets.key?(key)
+        @assets[key]
+      else
+        @assets[key] = begin
+          # Persisted cache
+          cache_asset(key) do
+            super
+          end
+        end
+      end
+    end
+
     protected
       # Index is immutable, any methods that try to clear the cache
       # should bomb.
